@@ -282,7 +282,7 @@ int _tmain(int argc, _TCHAR * argv[])
 	phantom_omni::OmniState state_msg;
 	string topic_state = rosNamespace + "/state";
 	Publisher state_pub(topic_state.c_str(), &state_msg);
-	nh.advertise(state_pub);
+	nh.advertise(state_pub); 
 
 	// Setting up subscriber
 	string topic_force = rosNamespace + "/force_scaling";
@@ -297,7 +297,7 @@ int _tmain(int argc, _TCHAR * argv[])
 		if (nh.connected()){
 			// update omni state
 			omniStateSnapshot_ = omniState_;
-			if (omniStateSnapshot_.updatesSinceLastPublish > 7){
+			if (omniStateSnapshot_.updatesSinceLastPublish > 10){
 				omniState_.updatesSinceLastPublish = 0;
 
 				//double v = sqrt(pow(omniStateSnapshot_.velocity[0],2) + pow(omniStateSnapshot_.velocity[1],2) + pow(omniStateSnapshot_.velocity[2],2));
